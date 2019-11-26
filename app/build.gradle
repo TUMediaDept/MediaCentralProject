@@ -8,28 +8,114 @@ android {
         minSdkVersion 15
         targetSdkVersion 29
         versionCode 1
-        versionName "1.0"
+        /**
+         * versionName [<major> . <minor> . <point>]
+         *
+         * major: 컨셉이나 앱이 지향하는 기본 디자인이 변경된 경우 -> 앱의 큰 틀이 변화된 경우
+         * minor: 기능 추가, 기능 삭제 및 사양 등이 변경된 경우
+         * point: 버그 수정, 디자인 수정 등
+         *
+         * DEFAULT ver. "1.0.0"
+         */
+        versionName "1.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        // 배포
         release {
             debuggable false
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        // 개발
         debug {
             debuggable true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    /**
+     *  빌드 변형 구성(FLAVOR)
+     */
+    flavorDimensions "version"
+    productFlavors {
+        // 개발용
+        dev {
+            manifestPlaceholders = [appLabel: "개발용"]
+            buildConfigField 'boolean', 'IS_REAL', 'false'
+        }
+        // 배포용
+        rel {
+//            manifestPlaceholders = [appLabel: '@string/app_name']
+            buildConfigField 'boolean', 'IS_REAL', 'true'
+        }
+    }
+
+    /**
+     * 데이터바인딩 사용
+     */
+    dataBinding {
+        enabled true
+    }
+    /**
+     * RxJava 람다식 표현(java 1.8 이상 지원)
+     */
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+
+
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+
+    // Material Design
+    implementation 'com.google.android.material:material:1.2.0-alpha02'
+
+    /**
+     * Android Architecture Components(AAC)
+     *  # ViewModel
+     *  # Room
+     */
+    // ViewModel
+    implementation 'android.arch.lifecycle:extensions:1.1.1'
+    // Room
+    implementation 'android.arch.persistence.room:runtime:1.1.1'
+    annotationProcessor 'android.arch.persistence.room:compiler:1.1.1'
+    implementation 'android.arch.persistence.room:rxjava2:1.1.1'
+
+    // Dagger2
+    implementation 'com.google.dagger:dagger:2.25.2'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.25.2'
+    implementation 'com.google.dagger:dagger-android:2.25.2'
+    implementation 'com.google.dagger:dagger-android-support:2.25.2'
+    annotationProcessor 'com.google.dagger:dagger-android-processor:2.25.2'
+
+    // reactiveX
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.13'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.6.2'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
+    // Okhttp
+    implementation 'com.squareup.okhttp3:okhttp:4.2.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.2.1'
+    // Gson
+    implementation 'com.google.code.gson:gson:2.8.5'
+
+
+    // Glide
+
+    // permission dispatcher
+
+
 }
