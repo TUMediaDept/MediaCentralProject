@@ -1,8 +1,10 @@
-package com.tumedia.mediaandroidpractice;
+package com.tumedia.mediaandroidpractice.main;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.tumedia.mediaandroidpractice.R;
 
 public class MainActivity extends AppCompatActivity {
 

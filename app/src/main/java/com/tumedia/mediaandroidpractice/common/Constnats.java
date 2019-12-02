@@ -1,4 +1,4 @@
-package com.tumedia.mediaandroidpractice.util;
+package com.tumedia.mediaandroidpractice.common;
 
 /**
  * Created by Ximon on 2019-12-01

@@ -1,8 +1,7 @@
-package com.tumedia.mediaandroidpractice.data;
+package com.tumedia.mediaandroidpractice.network;
 
 import android.os.Build;
 import android.webkit.CookieManager;
-import android.webkit.CookieSyncManager;
 
 import com.google.gson.GsonBuilder;
 import com.tumedia.mediaandroidpractice.BuildConfig;
@@ -57,6 +56,7 @@ public class RetrofitManager {
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
         httpLoggingInterceptor.level(HttpLoggingInterceptor.Level.BODY);
 
+        // DEBUG 모드일 경우에만 http 로그 출력
         if (BuildConfig.DEBUG) {
             okHttpClient.addNetworkInterceptor(httpLoggingInterceptor);
         }

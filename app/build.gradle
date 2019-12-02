@@ -60,12 +60,13 @@ android {
         }
     }
 
-    /**
-     * 데이터바인딩 사용
-     */
-    dataBinding {
-        enabled true
-    }
+//    /**
+//     * 데이터바인딩 사용
+//     */
+//    dataBinding {
+//        enabled true
+//    }
+
     /**
      * RxJava 람다식 표현(java 1.8 이상 지원)
      */
@@ -98,11 +99,12 @@ dependencies {
      *  # Room
      */
     // ViewModel & LiveData
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
-    implementation 'androidx.lifecycle:lifecycle-runtime:2.1.0'
-    implementation 'androidx.lifecycle:lifecycle-common-java8:2.1.0'
+//    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
+//    implementation 'androidx.lifecycle:lifecycle-runtime:2.1.0'
+//    implementation 'androidx.lifecycle:lifecycle-common-java8:2.1.0'
+
     // if using Java8, use the following instead of lifecycle-compiler
-    implementation "androidx.lifecycle:lifecycle-reactivestreams:2.1.0"
+//    implementation "androidx.lifecycle:lifecycle-reactivestreams:2.1.0"
 
 //    annotationProcessor 'androidx.lifecycle:lifecycle-compiler:2.1.0'
 //    implementation 'android.arch.lifecycle:runtime:1.1.1'

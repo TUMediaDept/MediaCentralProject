@@ -10,7 +10,6 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.OnLifecycleEvent;
-import androidx.lifecycle.ProcessLifecycleOwner;
 
 import java.util.ArrayList;
 
@@ -38,7 +37,7 @@ public class MediaApplication extends Application
     public void onCreate() {
         super.onCreate();
         registerActivityLifecycleCallbacks(this);
-        ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
+//        ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
 
         mContext = getApplicationContext();
 
