@@ -1,4 +1,4 @@
-package com.tumedia.mediaandroidpractice.network;
+package com.tumedia.mediaandroidpractice.logic.remote;
 
 import android.os.Build;
 import android.webkit.CookieManager;
