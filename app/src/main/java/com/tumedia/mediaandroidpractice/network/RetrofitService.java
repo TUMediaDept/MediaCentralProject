@@ -1,4 +1,4 @@
-package com.tumedia.mediaandroidpractice.logic.remote;
+package com.tumedia.mediaandroidpractice.network;
 
 /**
  * Created by XIMON on 2019-12-01
