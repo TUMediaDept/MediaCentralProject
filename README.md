@@ -43,11 +43,15 @@ MVP: model과 view를 완전히 분리하기 위해 등장한 패턴
 
 ## TODO MVP
 
- # 1. Presenter 생성하는 위치에서 Repository 생성
- # 2. Presenter에서 Model(Repository) 포합(setter)
- # 3. Presenter에서 Model(Repository) 호출
- # 4. Model(Repository)는 Remote/Local의 데이터를 선택하고, 이를 캐싱
- # 5. 데이터 호출이 완료되면 Loader 또는 Presetner에서 세팅한 Listener에 값을 전달
+ [1] Presenter 생성하는 위치에서 Repository 생성
+
+ [2] Presenter에서 Model(Repository) 포합(setter)
+
+ [3] Presenter에서 Model(Repository) 호출
+
+ [4] Model(Repository)는 Remote/Local의 데이터를 선택하고, 이를 캐싱
+
+ [5] 데이터 호출이 완료되면 Loader 또는 Presetner에서 세팅한 Listener에 값을 전달
 
 ##
 
