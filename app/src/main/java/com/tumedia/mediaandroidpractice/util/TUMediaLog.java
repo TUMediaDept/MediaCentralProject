@@ -12,7 +12,7 @@ public class TUMediaLog {
     // 로그를 표시할 레벨
     private static int LogLevel = Log.VERBOSE;
     // 로그를 표시할 기본 TAG
-    private static String LogTag = "MediaLog";
+    private static String LogTag = "TUMediaLog";
 
 
     /**

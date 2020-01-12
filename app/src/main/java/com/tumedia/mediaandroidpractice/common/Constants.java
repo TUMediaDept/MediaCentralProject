@@ -2,9 +2,17 @@ package com.tumedia.mediaandroidpractice.common;
 
 /**
  * Created by Ximon on 2019-12-01
+ *
+ * 상수(Constant) 클래스
  */
-public class Constnats {
+public class Constants {
     public static final String PREF_KEY = "tu_media";
+
+    // Github
+    public static final String GITHUB_URL = "https://api.github.com";
+    public static final String SEARCH = "/search";
+    public static final String SEARCH_REPO = SEARCH + "/repositories";
+
     // 카카오
 
 
