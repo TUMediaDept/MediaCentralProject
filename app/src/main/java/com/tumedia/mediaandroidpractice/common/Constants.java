@@ -13,11 +13,16 @@ public class Constants {
     public static final String SEARCH = "/search";
     public static final String SEARCH_REPO = SEARCH + "/repositories";
 
+
+
+
+
+
     // 카카오
 
 
-    // 알라딘
-    public static final String ALADIN_URL = "http://www.aladin.co.kr/ttb/api";
-    public static final String TTB_KEY = "ttbyr16331403001";
+//    // 알라딘
+//    public static final String ALADIN_URL = "http://www.aladin.co.kr/ttb/api";
+//    public static final String TTB_KEY = "ttbyr16331403001";
 
 }

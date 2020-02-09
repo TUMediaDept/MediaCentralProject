@@ -3,7 +3,7 @@ package com.tumedia.mediaandroidpractice.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.tumedia.mediaandroidpractice.common.Constnats;
+import com.tumedia.mediaandroidpractice.common.Constants;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,7 +30,7 @@ public class SharedPreferencesUtil {
             mInstance = new SharedPreferencesUtil();
         }
         if (mSharedPreferences == null) {
-            mSharedPreferences = mContext.getSharedPreferences(Constnats.PREF_KEY, Context.MODE_PRIVATE);
+            mSharedPreferences = mContext.getSharedPreferences(Constants.PREF_KEY, Context.MODE_PRIVATE);
             editor = mSharedPreferences.edit();
         }
         return mInstance;

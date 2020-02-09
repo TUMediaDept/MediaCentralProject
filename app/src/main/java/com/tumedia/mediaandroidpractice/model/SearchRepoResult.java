@@ -13,7 +13,7 @@ public class SearchRepoResult {
     private boolean incompleteRes;
 
     @SerializedName("items")
-    private ArrayList<SearchRepoModel> items;
+    private ArrayList<SearchRepoModel> arrRepoList;
 
     public int getTotCnt() {
         return totCnt;
@@ -31,11 +31,11 @@ public class SearchRepoResult {
         this.incompleteRes = incompleteRes;
     }
 
-    public ArrayList<SearchRepoModel> getItems() {
-        return items;
+    public ArrayList<SearchRepoModel> getArrRepoList() {
+        return arrRepoList;
     }
 
-    public void setItems(ArrayList<SearchRepoModel> items) {
-        this.items = items;
+    public void setArrRepoList(ArrayList<SearchRepoModel> arrRepoList) {
+        this.arrRepoList = arrRepoList;
     }
 }
