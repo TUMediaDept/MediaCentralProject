@@ -3,9 +3,12 @@ package com.tumedia.mediaandroidpractice.util;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.orhanobut.logger.Logger;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.Objects;
 
 /**
  * 반복적이거나 공통으로 쓰이는 기능들을 처리하는 Util 클래스
@@ -24,7 +27,7 @@ public class CommonUtil {
             try {
                 result = URLDecoder.decode(url, "UTF-8");
             } catch (UnsupportedEncodingException e) {
-//                TUMediaLog.e(e.getLocalizedMessage());
+                Logger.e(Objects.requireNonNull(e.getLocalizedMessage()));
             }
         }
 
@@ -43,7 +46,7 @@ public class CommonUtil {
             try {
                 result = URLEncoder.encode(url, "UTF-8");
             } catch (Exception e) {
-//                TUMediaLog.e(e.getLocalizedMessage());
+                Logger.e(Objects.requireNonNull(e.getLocalizedMessage()));
             }
         }
 

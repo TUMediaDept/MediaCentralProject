@@ -17,8 +17,8 @@ public interface RetrofitService {
      * @param keyword : 검색할 repository 키워드
      * @return
      */
-    @GET(Constants.SEARCH_REPO)
-    Flowable<SearchRepoResult> doSearchRepo(@Query("q") String keyword);
+//    @GET(Constants.SEARCH_REPO)
+//    Flowable<SearchRepoResult> doSearchRepo(@Query("q") String keyword);
 
 
 
