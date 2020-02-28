@@ -1,12 +1,17 @@
 apply plugin: 'com.android.application'
 
-repositories {
-    mavenCentral()
-    // 카카오 SDK 사용 명시
-    maven {
-        url 'http://devrepo.kakao.com:8088/nexus/content/groups/public/'
-    }
-}
+//repositories {
+//    mavenCentral()
+//    // 카카오 SDK 사용 명시
+//    maven {
+//        url 'http://devrepo.kakao.com:8088/nexus/content/groups/public/'
+//    }
+//}
+
+def keystorePropertiesFile = rootProject.file("keystore/keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -28,18 +33,41 @@ android {
         versionName "1.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-    buildTypes {
-        // 배포
-        release {
-            debuggable false
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+    /**
+     * 어플리케이션 서명(singing) keystore 관련 설정 분리
+     */
+    signingConfigs {
+        // 개발
+        debug {
+            keyAlias keystoreProperties['KeyAlias']
+            keyPassword keystoreProperties['KeyPassword']
+            storeFile file(rootDir.getCanonicalPath() + "/" + keystoreProperties['KeyStore'])
+            storePassword keystoreProperties['StorePassword']
         }
+        // 운영
+        release {
+            keyAlias keystoreProperties['KeyAlias']
+            keyPassword keystoreProperties['KeyPassword']
+            storeFile file(rootDir.getCanonicalPath() + "/" + keystoreProperties['KeyStore'])
+            storePassword keystoreProperties['StorePassword']
+        }
+    }
+
+    buildTypes {
         // 개발
         debug {
             debuggable true
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+        // 운영
+        release {
+            debuggable false
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 
@@ -54,9 +82,9 @@ android {
             manifestPlaceholders = [appLabel: "개발용"]
             buildConfigField 'boolean', 'IS_REAL', 'false'
         }
-        // 배포용
+        // 운영(배포용)
         rel {
-//            manifestPlaceholders = [appLabel: '@string/app_name']
+            manifestPlaceholders = [appLabel: '@string/app_name']
             buildConfigField 'boolean', 'IS_REAL', 'true'
         }
     }

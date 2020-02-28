@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">MediaAndroidPractice</string>
+    <string name="app_name">SmartTalk</string>
+
+    <string name="kakao_app_key">ff8b371322841339602c9c9556a8704f</string>
 </resources>
