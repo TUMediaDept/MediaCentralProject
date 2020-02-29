@@ -141,11 +141,12 @@ dependencies {
 //    annotationProcessor 'android.arch.lifecycle:compiler:1.1.1.'
 
 
-//    /** Room */
+    /** Room */
 //    def room_version = "2.2.2"
-//    implementation "androidx.room:room-runtime:$room_version"
-//    annotationProcessor "androidx.room:room-compiler:$room_version"
-//    implementation "androidx.room:room-rxjava2:$room_version"
+    implementation "androidx.room:room-runtime:2.2.4"
+    annotationProcessor "androidx.room:room-compiler:2.2.4"
+    implementation "android.arch.persistence.room:runtime:1.1.1"
+    implementation "androidx.room:room-rxjava2:2.2.4"
 
 //    /** Dagger2 */
 //    implementation 'com.google.dagger:dagger:2.25.2'
@@ -158,8 +159,8 @@ dependencies {
 //    // 카카오 로그인 sdk를 사용하기 위해 필요.
 //    implementation group: 'com.kakao.sdk', name: 'usermgmt', version: project.KAKAO_SDK_VERSION
 
-//    // 카카오링크 sdk를 사용하기 위해 필요.
-//    implementation group: 'com.kakao.sdk', name: 'kakaolink', version: project.KAKAO_SDK_VERSION
+    // 카카오링크 sdk를 사용하기 위해 필요.
+    implementation group: 'com.kakao.sdk', name: 'kakaolink', version: '1.25.0'
 
     // 카카오톡 sdk를 사용하기 위해 필요.
     implementation group: 'com.kakao.sdk', name: 'kakaotalk', version: '1.25.0'
@@ -191,6 +192,8 @@ dependencies {
     // Glide
 
     // permission dispatcher
+    implementation "org.permissionsdispatcher:permissionsdispatcher:4.6.0"
+    annotationProcessor "org.permissionsdispatcher:permissionsdispatcher-processor:4.6.0"
 
     // Logger
     implementation 'com.orhanobut:logger:2.2.0'
