@@ -15,3 +15,6 @@
 
 # keystore
 keystore/
+
+# Strings.xml
+/app/src/main/res/values/strings.xml
