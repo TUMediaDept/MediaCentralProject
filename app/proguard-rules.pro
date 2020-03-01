@@ -70,3 +70,7 @@
   public *;
 }
 -dontwarn android.support.v4.**,org.slf4j.**,com.google.android.gms.**
+
+## Room
+-keep class * extends androidx.room.RoomDatabase
+-dontwarn androidx.room.paging.**
