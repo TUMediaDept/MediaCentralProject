@@ -112,6 +112,13 @@ android {
 }
 
 dependencies {
+    /**
+     * 안드로이드 Gradle에 라이브러리 추가하는 implementation 종류
+     * 1. implementation : 항상 적용.
+     * 2. debugImplementation : 디버그 빌드 시에만 적용.
+     * 3. releaseImplementation : 릴리즈 빌드 시에만 적용.
+     * 4. testImplementation : 테스트 코드를 수행할 때만 적용.
+     */
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
@@ -120,7 +127,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 
     // Material Design
-    implementation 'com.google.android.material:material:1.2.0-alpha02'
+    implementation 'com.google.android.material:material:1.2.0-alpha05'
 
     /**
      * Android Architecture Components(AAC)
@@ -198,6 +205,10 @@ dependencies {
     // Logger
     implementation 'com.orhanobut:logger:2.2.0'
 
-    //Stetho
-    implementation 'com.facebook.stetho:stetho:1.5.1'
+    //Stetho (android debugging lib)
+//    implementation 'com.facebook.stetho:stetho:1.5.1'
+
+    // Android Room Database debugging lib
+    // debugImplementation: 디버그 빌드 시에만 적용
+    debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
 }
