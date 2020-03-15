@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--  카카오톡 api 개발 세팅  -->
+    <string name="kakao_app_key">ff8b371322841339602c9c9556a8704f</string>
+    <!--  카카오톡 링크 API 사용 ( 앱으로 연결하기 위한 커스텀 스킴 추가 )  -->
+    <string name="kakao_scheme">kakaoff8b371322841339602c9c9556a8704f</string>
+    <string name="kakaolink_host">kakaolink</string>
+</resources>
