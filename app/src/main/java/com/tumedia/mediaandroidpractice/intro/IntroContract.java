@@ -12,5 +12,6 @@ public class IntroContract {
     }
     public interface Presenter extends BasePresenter<View> {
         // 원하는 데이터 요청(조회)
+        void showActivityToCheckPermission();
     }
 }

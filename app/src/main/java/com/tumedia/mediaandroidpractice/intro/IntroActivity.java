@@ -11,7 +11,7 @@ import com.tumedia.mediaandroidpractice.main.MainContract;
  */
 public class IntroActivity
         extends BaseActivity<IntroContract.View, IntroContract.Presenter>
-        implements MainContract.View {
+        implements IntroContract.View {
 
     @Override
     protected IntroContract.Presenter setPresenter() {
@@ -22,5 +22,9 @@ public class IntroActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
+    }
+
+    private void checkPermission(){
+
     }
 }
