@@ -54,7 +54,7 @@ public class PermissionActivity extends AppCompatActivity implements View.OnClic
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     Intent intent = new Intent(
                             Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-                            Uri.parse("package:$packageName"));
+                            Uri.parse("package:" + getPackageName()));
                     startActivityForResult(intent, ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE);
                 }
                 break;
