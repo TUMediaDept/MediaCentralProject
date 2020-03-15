@@ -73,7 +73,7 @@ public class PermissionActivity extends AppCompatActivity implements View.OnClic
         if(requestCode == ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE){
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 if(!Settings.canDrawOverlays(this)){
-                    finish();
+//                    finish();
                 }else{
 //                    startService();
                 }
