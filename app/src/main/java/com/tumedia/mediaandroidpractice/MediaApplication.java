@@ -3,7 +3,9 @@ package com.tumedia.mediaandroidpractice;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
+import android.webkit.WebView;
 
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
@@ -102,7 +104,10 @@ public class MediaApplication extends Application
 
         // 디버그 로그 설정
         if(!BuildConfig.IS_REAL){
-
+            // WebView 디버깅
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                WebView.setWebContentsDebuggingEnabled(true);
+            }
         }else{
 
         }
