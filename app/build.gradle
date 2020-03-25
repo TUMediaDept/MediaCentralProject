@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'com.google.gms.google-services'  // Google Play services Gradle plugin
 //repositories {
 //    mavenCentral()
 //    // 카카오 SDK 사용 명시
@@ -79,7 +79,7 @@ android {
         // 개발용
         dev {
             minSdkVersion 21 // 레거시 멀티덱스 피하기 위함:: 개발 시에만 minSdkVersion 올려줌 [빌드 속도 개선]
-            manifestPlaceholders = [appLabel: "개발용"]
+            manifestPlaceholders = [appLabel: "(D)스마트카톡"]
             buildConfigField 'boolean', 'IS_REAL', 'false'
         }
         // 운영(배포용)
@@ -100,8 +100,8 @@ android {
      * RxJava 람다식 표현(java 1.8 이상 지원)
      */
     compileOptions {
-        sourceCompatibility = 1.8
-        targetCompatibility = 1.8
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 
 //    packagingOptions {
@@ -148,43 +148,39 @@ dependencies {
 //    annotationProcessor 'android.arch.lifecycle:compiler:1.1.1.'
 
 
-    /** Room */
+    /** Room (SQLite) */
 //    def room_version = "2.2.2"
     implementation "androidx.room:room-runtime:2.2.4"
     annotationProcessor "androidx.room:room-compiler:2.2.4"
     implementation "android.arch.persistence.room:runtime:1.1.1"
     implementation "androidx.room:room-rxjava2:2.2.4"
 
-    /** Dagger2 */
+    /** Dagger2 (DI) */
     implementation 'com.google.dagger:dagger:2.25.2'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.25.2'
     implementation 'com.google.dagger:dagger-android:2.25.2'
     implementation 'com.google.dagger:dagger-android-support:2.25.2'
     annotationProcessor 'com.google.dagger:dagger-android-processor:2.25.2'
 
-
+    /** KAKAO */
 //    // 카카오 로그인 sdk를 사용하기 위해 필요.
 //    implementation group: 'com.kakao.sdk', name: 'usermgmt', version: project.KAKAO_SDK_VERSION
-
     // 카카오링크 sdk를 사용하기 위해 필요.
     implementation group: 'com.kakao.sdk', name: 'kakaolink', version: '1.25.0'
-
     // 카카오톡 sdk를 사용하기 위해 필요.
     implementation group: 'com.kakao.sdk', name: 'kakaotalk', version: '1.25.0'
-
 //    // 카카오내비 sdk를 사용하기 위해 필요.
 //    implementation group: 'com.kakao.sdk', name: 'kakaonavi', version: project.KAKAO_SDK_VERSION
-
 //    // 카카오스토리 sdk를 사용하기 위해 필요.
 //    implementation group: 'com.kakao.sdk', name: 'kakaostory', version: project.KAKAO_SDK_VERSION
-
 //    // push sdk를 사용하기 위해 필요.
-//    implementation group: 'com.kakao.sdk', name: 'push', version: project.KAKAO_SDK_VERSION
+    implementation group: 'com.kakao.sdk', name: 'push', version: '1.25.0'
 
     // reactiveX
     implementation 'io.reactivex.rxjava2:rxjava:2.2.13'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
 
+    /** NETWORK ( Retrofit + Okhttp + Gson ) */
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.6.2'
     implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
@@ -197,6 +193,8 @@ dependencies {
 
 
     // Glide
+    implementation 'com.github.bumptech.glide:glide:4.10.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
 
     // permission dispatcher
     implementation "org.permissionsdispatcher:permissionsdispatcher:4.6.0"
@@ -211,4 +209,11 @@ dependencies {
     // Android Room Database debugging lib
     // debugImplementation: 디버그 빌드 시에만 적용
     debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
+
+    /** Firebase */
+    // add the Firebase SDK for Google Analytics
+//    implementation 'com.google.firebase:firebase-analytics:17.2.3'
+    implementation 'com.google.firebase:firebase-analytics'
+    // add SDKs for any other desired Firebase products
+    // https://firebase.google.com/docs/android/setup#available-libraries
 }

@@ -9,6 +9,9 @@ import android.webkit.WebView;
 
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
+import com.tumedia.mediaandroidpractice.di.component.AppComponent;
+import com.tumedia.mediaandroidpractice.di.component.DaggerAppComponent;
+import com.tumedia.mediaandroidpractice.di.module.AppModule;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,6 +28,8 @@ public class MediaApplication extends Application
     public static final String TAG = MediaApplication.class.getSimpleName();
 
 //    private static ArrayList<Activity> mActivityStack;
+
+    private AppComponent appComponent;
 
     private static Context mContext;
 
@@ -45,6 +50,13 @@ public class MediaApplication extends Application
 //        ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
 
         checkDebugLogInfo();
+    }
+
+    private void init(){
+//        appComponent = DaggerAppComponent.builder()
+//                .appModule(new AppModule(this))
+//                .build();
+//        appComponent.inject(this);
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)

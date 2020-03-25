@@ -1,4 +1,4 @@
-package com.tumedia.mediaandroidpractice.dagger.module;
+package com.tumedia.mediaandroidpractice.di.module;
 
 import android.content.Context;
 
