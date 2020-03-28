@@ -3,8 +3,9 @@
     <string name="app_name">스마트카톡</string>
 
     <!-- Permission Activity  -->
-    <string name="str_permission_text1">1. \'권한 허용하기\' 버튼을 눌러 다른 앱 위에 표시되는 앱 권한을 허용해주세요</string>
-    <string name="str_permission_text2">2. \'접근성 설정\' 버튼을 누르고 - \'스마트카톡\'을 찾아서 클릭 후 - 권한을 활성화 시켜주세요</string>
-    <string name="str_permission_btn1">권한 허용하기</string>
-    <string name="str_permission_btn2">접근성 설정</string>
+    <string name="tv_permission_overlay">1. \'권한 허용하기\' 버튼을 눌러 다른 앱 위에 표시되는 앱 권한을 허용해주세요</string>
+    <string name="tv_permission_accessibility">2. \'접근성 설정\' 버튼을 누르고 - \'스마트카톡\'을 찾아서 클릭 후 - 권한을 활성화 시켜주세요</string>
+    <string name="btn_permission_overlay">권한 허용하기</string>
+    <string name="btn_permission_accessibility">접근성 설정</string>
+    <string name="btn_permission_ok">완료</string>
 </resources>
