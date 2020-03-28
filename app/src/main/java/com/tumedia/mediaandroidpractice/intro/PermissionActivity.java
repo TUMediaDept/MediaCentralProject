@@ -20,7 +20,8 @@ import com.tumedia.mediaandroidpractice.R;
  * @since 2020-03-15 오후 7:52
  */
 public class PermissionActivity extends AppCompatActivity implements View.OnClickListener {
-    private static final int ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE = 1;
+    private static final int ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE = 1001;
+    private static final int ACTION_MANAGE_ACCESSIBLITY_PERMISSION_REQUEST_CODE = 1002;
     /**
      * overlay permission: 다른 앱 위에 표시되는 권한
      * access permission: 접근성 권한(설정)
@@ -38,8 +39,8 @@ public class PermissionActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void initView() {
-        mBtnOverlayPermission = findViewById(R.id.btn1);
-        mBtnAccessPermission = findViewById(R.id.btn2);
+        mBtnOverlayPermission = findViewById(R.id.btnOverlay);
+        mBtnAccessPermission = findViewById(R.id.btnAccess);
     }
 
     private void initListener(){
@@ -50,7 +51,7 @@ public class PermissionActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.btn1:
+            case R.id.btnOverlay:
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     Intent intent = new Intent(
                             Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
@@ -58,8 +59,9 @@ public class PermissionActivity extends AppCompatActivity implements View.OnClic
                     startActivityForResult(intent, ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE);
                 }
                 break;
-            case R.id.btn2:
-
+            case R.id.btnAccess:
+                startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));
+//                startActivityForResult(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));
                 break;
             default:
                 break;
@@ -78,6 +80,9 @@ public class PermissionActivity extends AppCompatActivity implements View.OnClic
 //                    startService();
                 }
             }
+        }
+        if(requestCode == ACTION_MANAGE_ACCESSIBLITY_PERMISSION_REQUEST_CODE){
+
         }
     }
 }

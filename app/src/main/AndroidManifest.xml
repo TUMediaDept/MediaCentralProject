@@ -24,8 +24,8 @@
 
         <!--################################################## [START] SERVICE ##################################################-->
         <service android:name=".AccessService"
-            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE"
-            android:label="@string/accessibility_service_label">
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+<!--            android:label="@string/accessibility_service_label"-->
             <intent-filter>
                 <action android:name="android.accessibilityservice.AccessibilityService" />
             </intent-filter>

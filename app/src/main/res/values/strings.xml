@@ -8,4 +8,5 @@
     <string name="btn_permission_overlay">권한 허용하기</string>
     <string name="btn_permission_accessibility">접근성 설정</string>
     <string name="btn_permission_ok">완료</string>
+    <string name="accessibility_description">접근성 권한을 필요로 합니다.</string>
 </resources>
