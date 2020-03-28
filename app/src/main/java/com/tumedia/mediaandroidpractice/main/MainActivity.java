@@ -15,5 +15,6 @@ public class MainActivity extends AppCompatActivity {
         ////
         //-----------------------
         // 테스트 (영래 수정)
+        /// JJY_TEST
     }
 }
