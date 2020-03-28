@@ -8,5 +8,7 @@
     <color name="colorPrimaryDark">#356859</color>
     <color name="colorAccent">#FD5523</color>
     <color name="colorBackground">#FFFBE6</color>
+
+    <color name="inComplete">#AFAFAF</color>
     <!--<color name="colorSecondary">#FD5523</color>-->
 </resources>
