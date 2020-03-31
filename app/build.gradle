@@ -155,6 +155,9 @@ dependencies {
     implementation "android.arch.persistence.room:runtime:1.1.1"
     implementation "androidx.room:room-rxjava2:2.2.4"
 
+    // Cordova 8.0.0 Library Module
+    implementation project(':libCordova')
+
     /** Dagger2 (DI) */
     implementation 'com.google.dagger:dagger:2.25.2'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.25.2'
