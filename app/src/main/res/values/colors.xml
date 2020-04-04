@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>-->
 
+    <color name="colorPrimaryLight">#B9E4C9</color>
     <color name="colorPrimary">#37966F</color>
     <color name="colorPrimaryDark">#356859</color>
     <color name="colorAccent">#FD5523</color>
@@ -11,5 +12,4 @@
 
     <color name="inComplete">#AFAFAF</color>
     <color name="colorBlack">#000000</color>
-    <!--<color name="colorSecondary">#FD5523</color>-->
 </resources>

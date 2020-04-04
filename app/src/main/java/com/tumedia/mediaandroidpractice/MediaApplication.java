@@ -5,8 +5,12 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.webkit.WebView;
 
+import com.kakao.auth.IApplicationConfig;
+import com.kakao.auth.KakaoAdapter;
+import com.kakao.auth.KakaoSDK;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 import com.tumedia.mediaandroidpractice.di.component.AppComponent;
@@ -50,6 +54,7 @@ public class MediaApplication extends Application
 //        ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
 
         checkDebugLogInfo();
+        init();
     }
 
     private void init(){
@@ -57,46 +62,55 @@ public class MediaApplication extends Application
 //                .appModule(new AppModule(this))
 //                .build();
 //        appComponent.inject(this);
+
+        // SDK 초기화
+        KakaoSDK.init(new KakaoAdapter() {
+
+            @Override
+            public IApplicationConfig getApplicationConfig() {
+                return () -> MediaApplication.this;
+            }
+        });
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     public void onForeground() {
-
+        Log.d(TAG,"on Foreground...");
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     public void onBackground() {
-
+        Log.d(TAG,"on Background...");
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     public void onDestroy() {
-
+        Log.d(TAG,"on Destroy...");
     }
 
     @Override
     public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle savedInstanceState) {
-
+        Log.d(TAG,"on " + activity.getLocalClassName() + " Created...");
     }
 
     @Override
     public void onActivityStarted(@NonNull Activity activity) {
-
+        Log.d(TAG,"on " + activity.getLocalClassName() + " Started...");
     }
 
     @Override
     public void onActivityResumed(@NonNull Activity activity) {
-
+        Log.d(TAG,"on " + activity.getLocalClassName() + " Resumed...");
     }
 
     @Override
     public void onActivityPaused(@NonNull Activity activity) {
-
+        Log.d(TAG,"on " + activity.getLocalClassName() + " Paused...");
     }
 
     @Override
     public void onActivityStopped(@NonNull Activity activity) {
-
+        Log.d(TAG,"on " + activity.getLocalClassName() + " Stopped...");
     }
 
     @Override
@@ -106,7 +120,7 @@ public class MediaApplication extends Application
 
     @Override
     public void onActivityDestroyed(@NonNull Activity activity) {
-
+        Log.d(TAG,"on " + activity.getLocalClassName() + " Destoryed...");
     }
 
     /**

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
     android:padding="30dp"
-    tools:context=".intro.PermissionActivity">
+    tools:context=".permission.PermissionActivity">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvOverlay"
