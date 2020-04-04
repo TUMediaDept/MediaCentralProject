@@ -37,7 +37,7 @@ public class IntroActivity
             Intent intent = new Intent(this,PermissionActivity.class);
             startActivity(intent);
         }
-        onDestroy();
+        finish();
     }
 
     //오버레이 권한 확인(마시멜로 이상부터만 가능)

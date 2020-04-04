@@ -3,15 +3,21 @@ package com.tumedia.mediaandroidpractice.intro;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.core.content.ContextCompat;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.text.TextUtils;
 import android.view.View;
 
+import com.tumedia.mediaandroidpractice.AccessService;
 import com.tumedia.mediaandroidpractice.R;
+import com.tumedia.mediaandroidpractice.main.MainActivity;
 
 /**
  * 권한 설정 화면
@@ -30,12 +36,31 @@ public class PermissionActivity extends AppCompatActivity implements View.OnClic
     private AppCompatButton mBtnAccessPermission;
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        setBtnColor();
+        Intent intent = new Intent(this, MainActivity.class);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if(Settings.canDrawOverlays(getApplication()) && checkAccessibilityService(getApplication())){
+                startActivity(intent);
+                finish();
+            }
+        }else{
+            if(checkAccessibilityService(getApplication())){
+                startActivity(intent);
+                finish();
+            }
+        }
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_permission);
 
         initView();
         initListener();
+        setBtnColor();
     }
 
     private void initView() {
@@ -46,6 +71,33 @@ public class PermissionActivity extends AppCompatActivity implements View.OnClic
     private void initListener(){
         mBtnOverlayPermission.setOnClickListener(this);
         mBtnAccessPermission.setOnClickListener(this);
+    }
+
+    private void setBtnColor() {
+        // 마시멜로 버전 이상
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (Settings.canDrawOverlays(getApplication())) {
+                // 오버레이(다른 앱 위에 표시) 동의 했을 경우
+                mBtnOverlayPermission.setBackgroundResource(R.color.colorAccent);
+                mBtnOverlayPermission.setTextColor(ContextCompat.getColor(getApplication(), R.color.colorBackground));
+            }else{
+                // (오버레이 퍼미션)다시 권한 설정 취소할 경우 고려
+                mBtnOverlayPermission.setBackgroundResource(R.color.inComplete);
+                mBtnOverlayPermission.setTextColor(ContextCompat.getColor(getApplication(), R.color.colorBlack));
+            }
+        } else {
+            mBtnOverlayPermission.setBackgroundResource(R.color.colorAccent);
+            mBtnOverlayPermission.setTextColor(ContextCompat.getColor(getApplication(), R.color.colorBackground));
+        }
+        if (checkAccessibilityService(getApplication())) {
+            // 접근성 설정 동의 했을 경우
+            mBtnAccessPermission.setBackgroundResource(R.color.colorAccent);
+            mBtnAccessPermission.setTextColor(ContextCompat.getColor(getApplication(), R.color.colorBackground));
+        }else{
+            // (접근성 퍼미션)다시 권한 설정 취소할 경우 고려
+            mBtnAccessPermission.setBackgroundResource(R.color.inComplete);
+            mBtnAccessPermission.setTextColor(ContextCompat.getColor(getApplication(), R.color.colorBlack));
+        }
     }
 
     @Override
@@ -60,8 +112,11 @@ public class PermissionActivity extends AppCompatActivity implements View.OnClic
                 }
                 break;
             case R.id.btnAccess:
+                Intent intent = new Intent(
+                        Settings.ACTION_ACCESSIBILITY_SETTINGS,
+                        Uri.parse("package:" + getPackageName()));
                 startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));
-//                startActivityForResult(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));
+//                startActivityForResult(intent, ACTION_MANAGE_ACCESSIBLITY_PERMISSION_REQUEST_CODE);
                 break;
             default:
                 break;
@@ -74,15 +129,51 @@ public class PermissionActivity extends AppCompatActivity implements View.OnClic
 
         if(requestCode == ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE){
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                if(!Settings.canDrawOverlays(this)){
-//                    finish();
-                }else{
-//                    startService();
-                }
+                setBtnColor();
+//                if(!Settings.canDrawOverlays(getApplication())){
+////                    finish();
+//                }else{
+////                    startService();
+//
+//                }
             }
         }
         if(requestCode == ACTION_MANAGE_ACCESSIBLITY_PERMISSION_REQUEST_CODE){
-
+            setBtnColor();
         }
+    }
+
+    // 접근성 권한이 있는지 없는지 확인하는 부분
+    private boolean checkAccessibilityService(Context mContext) {
+        int accessibilityEnabled = 0;
+        final String service = getPackageName() + "/" + AccessService.class.getCanonicalName();
+        try {
+            accessibilityEnabled = Settings.Secure.getInt(
+                    mContext.getApplicationContext().getContentResolver(),
+                    android.provider.Settings.Secure.ACCESSIBILITY_ENABLED);
+        } catch (Settings.SettingNotFoundException e) {
+            e.printStackTrace();
+        }
+        TextUtils.SimpleStringSplitter mStringColonSplitter = new TextUtils.SimpleStringSplitter(':');
+
+        if (accessibilityEnabled == 1) {
+            String settingValue = Settings.Secure.getString(
+                    mContext.getApplicationContext().getContentResolver(),
+                    Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES);
+
+            if (settingValue != null) {
+                mStringColonSplitter.setString(settingValue);
+
+                while (mStringColonSplitter.hasNext()) {
+                    String accessibilityService = mStringColonSplitter.next();
+
+                    if (accessibilityService.equalsIgnoreCase(service)) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
     }
 }
