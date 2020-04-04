@@ -1,4 +1,4 @@
-package com.tumedia.mediaandroidpractice.intro;
+package com.tumedia.mediaandroidpractice.permission;
 
 import com.tumedia.mediaandroidpractice.base.BasePresenterImpl;
 import com.tumedia.mediaandroidpractice.logic.Repository;
@@ -7,19 +7,15 @@ import com.tumedia.mediaandroidpractice.logic.RepositoryImpl;
 /**
  * Created by XIMON on 2020-02-05
  */
-public class IntroPresenter
-        extends BasePresenterImpl<IntroContract.View>
-        implements IntroContract.Presenter {
+public class PermissionPresenter
+        extends BasePresenterImpl<PermissionContract.View>
+        implements PermissionContract.Presenter {
 
     Repository repository;
 
-    IntroPresenter(){
+    PermissionPresenter(){
         this.repository = new RepositoryImpl();
         this.repository.setPresenter(this);
     }
 
-    @Override
-    public void showActivityToCheckPermission() {
-
-    }
 }

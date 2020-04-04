@@ -11,6 +11,7 @@ import com.tumedia.mediaandroidpractice.AccessService;
 import com.tumedia.mediaandroidpractice.R;
 import com.tumedia.mediaandroidpractice.base.BaseActivity;
 import com.tumedia.mediaandroidpractice.main.MainActivity;
+import com.tumedia.mediaandroidpractice.permission.PermissionActivity;
 
 /**
  * Created by XIMON on 2020-02-05
@@ -30,11 +31,13 @@ public class IntroActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
 
+//        mPresenter.showActivityToCheckPermission();
+
         if(checkDrawOverlayPermission(getApplication()) && checkAccessibilityService(getApplication())){
             Intent intent = new Intent(this,MainActivity.class);
             startActivity(intent);
         }else{
-            Intent intent = new Intent(this,PermissionActivity.class);
+            Intent intent = new Intent(this, PermissionActivity.class);
             startActivity(intent);
         }
         finish();
