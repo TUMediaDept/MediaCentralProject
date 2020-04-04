@@ -10,5 +10,6 @@
     <color name="colorBackground">#FFFBE6</color>
 
     <color name="inComplete">#AFAFAF</color>
+    <color name="colorBlack">#000000</color>
     <!--<color name="colorSecondary">#FD5523</color>-->
 </resources>
