@@ -15,10 +15,15 @@ import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.View;
 
+import com.jakewharton.rxbinding.view.RxView;
 import com.tumedia.mediaandroidpractice.AccessService;
 import com.tumedia.mediaandroidpractice.R;
 import com.tumedia.mediaandroidpractice.base.BaseActivity;
 import com.tumedia.mediaandroidpractice.main.MainActivity;
+
+import java.util.concurrent.TimeUnit;
+
+import rx.android.schedulers.AndroidSchedulers;
 
 /**
  * 권한 설정 화면
@@ -29,7 +34,8 @@ import com.tumedia.mediaandroidpractice.main.MainActivity;
  */
 public class PermissionActivity
         extends BaseActivity<PermissionContract.View, PermissionContract.Presenter>
-        implements PermissionContract.View, View.OnClickListener {
+        implements PermissionContract.View {
+//        , View.OnClickListener{
 
     private static final int ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE = 1001;
     private static final int ACTION_MANAGE_ACCESSIBLITY_PERMISSION_REQUEST_CODE = 1002;
@@ -79,8 +85,24 @@ public class PermissionActivity
     }
 
     private void initListener() {
-        mBtnOverlayPermission.setOnClickListener(this);
-        mBtnAccessPermission.setOnClickListener(this);
+//        mBtnOverlayPermission.setOnClickListener(this);
+//        mBtnAccessPermission.setOnClickListener(this);
+
+        // Rx 적인 클릭의 추상화
+        // 중복 클릭 방지
+        RxView.clicks(mBtnOverlayPermission)
+                .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
+                .subscribe(result -> {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        Intent intent = new Intent(
+                                Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                                Uri.parse("package:" + getPackageName()));
+                        startActivityForResult(intent, ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE);
+                    }
+                });
+        RxView.clicks(mBtnAccessPermission)
+                .throttleFirst(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
+                .subscribe(result -> startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)));
     }
 
     private void setBtnColor() {
@@ -111,25 +133,6 @@ public class PermissionActivity
     }
 
     @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.btnOverlay:
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    Intent intent = new Intent(
-                            Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-                            Uri.parse("package:" + getPackageName()));
-                    startActivityForResult(intent, ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE);
-                }
-                break;
-            case R.id.btnAccess:
-                startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));
-                break;
-            default:
-                break;
-        }
-    }
-
-    @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -140,7 +143,6 @@ public class PermissionActivity
 ////                    finish();
 //                }else{
 ////                    startService();
-//
 //                }
             }
         }
@@ -149,6 +151,12 @@ public class PermissionActivity
 //        }
     }
 
+    /***
+     * 안드로이드 접근성 서비스
+     *
+     * @param mContext
+     * @return
+     */
     // 접근성 권한이 있는지 없는지 확인하는 부분
     private boolean checkAccessibilityService(Context mContext) {
         int accessibilityEnabled = 0;
